@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Tipo 2 em Mulheres | Metodo DM2</title>
+    <meta name="description" content="Cansaco, tonteiras, peso que nao sai? O Metodo DM2 e um protocolo de 12 semanas focado na remissao da diabetes tipo 2.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --teal:#00A19A;--teal-dark:#008A84;--blue:#1D71B8;
+            --dark:#184341;--forest:#143331;--txt:#5a5a5a;
+            --light:#F7F8FA;--warm:#faf8f6;--white:#fff;
+            --grad:linear-gradient(135deg,#00A19A 0%,#1D71B8 100%);
+            --grad-hero:linear-gradient(40deg,#00A19A 39%,#1D71B8 100%);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:'Montserrat',sans-serif;color:var(--txt);line-height:1.7;overflow-x:hidden}
+        .container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+        .rv{opacity:0;transform:translateY(32px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+        .rv.vis{opacity:1;transform:none}
+        .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+        .d5{transition-delay:.5s}.d6{transition-delay:.6s}.d7{transition-delay:.7s}.d8{transition-delay:.8s}
+        .d9{transition-delay:.9s}.d10{transition-delay:1s}
+
+        .citybar{background:var(--forest);color:rgba(255,255,255,.6);text-align:center;padding:11px 20px;font-size:13px;font-weight:500;letter-spacing:.5px}
+        .citybar b{color:var(--teal);text-transform:uppercase;letter-spacing:1.5px}
+
+        .hdr{background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:13px 0;position:sticky;top:0;z-index:100;border-bottom:1px solid transparent;transition:all .3s}
+        .hdr.fix{box-shadow:0 2px 16px rgba(0,0,0,.07);border-bottom-color:rgba(0,161,154,.1)}
+        .hdr .container{display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:21px;font-weight:800;text-decoration:none;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hdr-btn{background:var(--blue);color:#fff;padding:10px 26px;border-radius:4px;text-decoration:none;font-weight:700;font-size:13px;transition:all .3s}
+        .hdr-btn:hover{background:var(--teal)}
+
+        .hero{background:var(--grad-hero);color:#fff;padding:72px 0 88px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-40%;right:-12%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%);border-radius:50%;animation:fl 9s ease-in-out infinite}
+        .hero::after{content:'';position:absolute;bottom:-30%;left:-8%;width:420px;height:420px;background:radial-gradient(circle,rgba(29,113,184,.25),transparent 70%);border-radius:50%;animation:fl 11s ease-in-out infinite reverse}
+        @keyframes fl{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-16px) scale(1.04)}}
+        .hero-inner{position:relative;z-index:2;max-width:680px}
+        .hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:22px}
+        .hero-sub{font-size:17px;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:36px;max-width:580px}
+        .hero-sub strong{color:#fff}
+        .badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+        .badge{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:600;color:#fff}
+        .badge strong{font-weight:800}
+        .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+        .btn-w{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--teal);padding:16px 34px;border-radius:4px;text-decoration:none;font-weight:700;font-size:15px;transition:all .3s}
+        .btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+        .btn-w svg{width:20px;height:20px}
+        .btn-g{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:5px;transition:color .3s}
+        .btn-g:hover{color:#fff}
+
+        /* CUIDADORA */
+        .cuidadora{padding:88px 0;background:var(--warm)}
+        .cuid-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:980px;margin:0 auto}
+        .cuid-text h2{font-size:30px;font-weight:800;color:var(--dark);line-height:1.3;margin-bottom:22px}
+        .cuid-text p{font-size:16px;color:#555;line-height:1.85;margin-bottom:16px}
+        .cuid-text p strong{color:var(--dark)}
+        .cuid-nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        .cuid-stat{background:var(--white);border-radius:14px;padding:26px 22px;text-align:center;box-shadow:0 8px 48px rgba(0,0,0,.05);transition:all .35s;border:1px solid transparent}
+        .cuid-stat:hover{transform:translateY(-3px);border-color:rgba(0,161,154,.12);box-shadow:0 14px 48px rgba(0,161,154,.1)}
+        .cuid-stat .num{font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px}
+        .cuid-stat .lbl{font-size:11px;font-weight:600;color:var(--txt);text-transform:uppercase;letter-spacing:.5px;line-height:1.4}
+
+        /* SINTOMAS */
+        .sintomas{padding:88px 0;background:var(--white)}
+        .sec-head{text-align:center;margin-bottom:48px}
+        .sec-head h2{font-size:32px;font-weight:800;color:var(--dark);line-height:1.3;margin-bottom:12px}
+        .sec-head p{font-size:16px;color:var(--txt);max-width:540px;margin:0 auto}
+
+        .checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:880px;margin:0 auto 44px}
+        .chk{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--light);border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .35s;user-select:none}
+        .chk:hover{border-color:rgba(0,161,154,.2);background:#f0faf9}
+        .chk.on{background:linear-gradient(135deg,rgba(0,161,154,.07),rgba(29,113,184,.05));border-color:var(--teal)}
+        .chk-box{flex-shrink:0;width:24px;height:24px;border:2px solid #c5c5c5;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .25s;margin-top:1px}
+        .chk.on .chk-box{background:var(--grad);border-color:var(--teal);animation:pop .3s cubic-bezier(.16,1,.3,1)}
+        @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+        .chk-box svg{width:14px;height:14px;color:#fff;opacity:0;transition:opacity .2s}
+        .chk.on .chk-box svg{opacity:1}
+        .chk-txt{font-size:15px;font-weight:600;color:var(--dark);line-height:1.5}
+        .chk-txt span{color:var(--txt);font-weight:400}
+
+        .callout{background:var(--forest);color:#fff;border-radius:14px;padding:32px 36px;max-width:760px;margin:0 auto;text-align:center;transition:all .5s;position:relative;overflow:hidden}
+        .callout p{font-size:16px;line-height:1.8;margin-bottom:6px;position:relative;z-index:1}
+        .callout p:last-of-type{margin-bottom:0}
+        .callout strong{color:#fff}
+        .cnt-badge{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:5px 18px;font-size:13px;font-weight:600;margin-bottom:14px}
+
+        /* CENTRAL */
+        .central{padding:88px 0;background:var(--light)}
+        .central-inner{max-width:760px;margin:0 auto}
+        .central-inner h2{font-size:30px;font-weight:800;color:var(--dark);line-height:1.3;margin-bottom:28px;text-align:center}
+        .central-inner>p{font-size:16px;color:#555;line-height:1.85;margin-bottom:18px}
+        .central-inner>p strong{color:var(--dark)}
+        .source{color:var(--teal);font-weight:600;font-size:13px}
+
+        .cycle{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:36px 0}
+        .cyc{background:var(--white);border-radius:12px;padding:24px 22px;box-shadow:0 6px 40px rgba(0,0,0,.05);transition:all .35s;border-left:4px solid transparent}
+        .cyc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+        .cyc:nth-child(1){border-left-color:#ef4444}
+        .cyc:nth-child(2){border-left-color:#f59e0b}
+        .cyc:nth-child(3){border-left-color:#6366f1}
+        .cyc:nth-child(4){border-left-color:#8b5cf6}
+        .cyc h4{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+        .cyc p{font-size:13px;color:var(--txt);line-height:1.6}
+
+        .emph{background:var(--grad);color:#fff;border-radius:12px;padding:30px 32px;font-size:19px;font-weight:700;text-align:center;line-height:1.5;margin-top:36px}
+
+        /* METODO */
+        .metodo{padding:88px 0;background:var(--white)}
+        .tl{max-width:840px;margin:48px auto 0;position:relative}
+        .tl::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:3px;background:var(--grad);border-radius:3px}
+        .tl-item{display:flex;gap:28px;margin-bottom:36px;position:relative}
+        .tl-item:last-child{margin-bottom:0}
+        .tl-dot{flex-shrink:0;width:56px;height:56px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;z-index:2;box-shadow:0 0 0 5px var(--white),0 4px 16px rgba(0,161,154,.18);transition:all .35s}
+        .tl-item:hover .tl-dot{transform:scale(1.08)}
+        .tl-body{background:var(--light);padding:26px 28px;border-radius:14px;flex:1;transition:all .35s;border:1px solid transparent}
+        .tl-item:hover .tl-body{background:var(--white);box-shadow:0 8px 40px rgba(0,0,0,.06);border-color:rgba(0,161,154,.12)}
+        .tl-body h3{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:8px}
+        .tl-body p{font-size:14px;color:var(--txt);line-height:1.75}
+
+        .met-result{max-width:840px;margin:48px auto 0;background:var(--grad);border-radius:14px;padding:36px;text-align:center;color:#fff;position:relative;overflow:hidden}
+        .met-result::before{content:'';position:absolute;top:-50%;left:-15%;width:350px;height:350px;background:rgba(255,255,255,.05);border-radius:50%}
+        .met-result p{font-size:17px;line-height:1.8;margin-bottom:24px;position:relative;z-index:1}
+
+        /* COMPARATIVO */
+        .comp{padding:88px 0;background:var(--dark);color:#fff;position:relative;overflow:hidden}
+        .comp .sec-head h2{color:#fff}
+        .comp-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px;margin:0 auto;position:relative;z-index:1}
+        .cc{border-radius:14px;padding:32px 28px;transition:all .4s}
+        .cc.old{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+        .cc.new{background:var(--grad);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 36px rgba(0,161,154,.22)}
+        .cc.new:hover{transform:translateY(-4px);box-shadow:0 14px 50px rgba(0,161,154,.32)}
+        .cc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+        .cc.old .cc-title{color:rgba(255,255,255,.35)}
+        .cr{margin-bottom:18px}.cr:last-child{margin-bottom:0}
+        .cr .lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+        .cc.old .lbl{color:rgba(255,255,255,.28)}
+        .cc.new .lbl{color:rgba(255,255,255,.65)}
+        .cr .val{font-size:14px;font-weight:500;line-height:1.5}
+        .cc.old .val{color:rgba(255,255,255,.5)}
+        .cc.new .val{color:#fff;font-weight:600}
+
+        /* DEPOIMENTOS */
+        .deps{padding:88px 0;background:var(--warm)}
+        .deps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+        .dep{background:var(--white);border-radius:14px;padding:32px 26px 26px;box-shadow:0 8px 48px rgba(0,0,0,.05);transition:all .4s;border:1px solid transparent}
+        .dep:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,161,154,.1);border-color:rgba(0,161,154,.12)}
+        .dep-q{width:36px;height:36px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-family:Georgia,serif;margin-bottom:18px}
+        .dep blockquote{font-size:14px;color:#555;line-height:1.85;font-style:italic;margin-bottom:22px}
+        .dep-line{height:1px;background:#eee;margin-bottom:18px}
+        .dep-who{display:flex;align-items:center;gap:12px}
+        .dep-av{width:42px;height:42px;background:var(--grad);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+        .dep-name{font-weight:700;font-size:14px;color:var(--dark)}
+        .dep-city{font-size:12px;color:var(--txt)}
+
+        /* FAQ */
+        .faq{padding:88px 0;background:var(--white)}
+        .faq-list{max-width:700px;margin:0 auto}
+        .faq-i{border-bottom:1px solid #eee}
+        .faq-q{width:100%;background:0;border:0;padding:22px 0;font-size:15px;font-weight:600;color:var(--dark);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Montserrat',sans-serif;gap:14px;transition:color .3s}
+        .faq-q:hover{color:var(--teal)}
+        .faq-tog{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;transition:all .35s}
+        .faq-tog svg{width:13px;height:13px;color:var(--teal);transition:transform .35s}
+        .faq-i.on .faq-tog{background:var(--grad)}
+        .faq-i.on .faq-tog svg{color:#fff;transform:rotate(180deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+        .faq-i.on .faq-a{max-height:400px}
+        .faq-a-in{padding-bottom:22px}
+        .faq-a p{font-size:14px;color:var(--txt);line-height:1.85}
+
+        /* CTA FINAL */
+        .ctaf{padding:88px 0;background:var(--grad-hero);color:#fff;text-align:center;position:relative;overflow:hidden}
+        .ctaf::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(255,255,255,.05),transparent 60%);border-radius:50%}
+        .ctaf .container{position:relative;z-index:1}
+        .ctaf h2{font-size:32px;font-weight:800;margin-bottom:20px;line-height:1.3}
+        .ctaf p{font-size:16px;line-height:1.85;color:rgba(255,255,255,.85);max-width:540px;margin:0 auto 36px}
+        .ctaf-btn{display:inline-flex;align-items:center;gap:11px;background:#fff;color:var(--teal);padding:18px 44px;border-radius:4px;text-decoration:none;font-weight:800;font-size:16px;transition:all .3s}
+        .ctaf-btn:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.18)}
+        .ctaf-btn svg{width:21px;height:21px}
+        .ctaf-micro{margin-top:14px;font-size:13px;color:rgba(255,255,255,.5)}
+
+        .ftr{background:var(--forest);color:rgba(255,255,255,.35);padding:40px 0 28px;text-align:center}
+        .ftr-brand{font-size:18px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+        .ftr-tag{font-size:13px;margin-bottom:24px}
+        .ftr-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+        .ftr-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:12px;font-weight:500;transition:color .3s}
+        .ftr-links a:hover{color:var(--teal)}
+        .ftr-copy{font-size:11px;color:rgba(255,255,255,.18)}
+
+        .wpp{position:fixed;bottom:24px;right:24px;z-index:999;text-decoration:none}
+        .wpp-circle{width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;position:relative}
+        .wpp-circle:hover{transform:scale(1.08)}
+        .wpp-circle svg{width:28px;height:28px;color:#fff}
+        .wpp-ring{position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ring 2s ease-out infinite}
+        @keyframes ring{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.5);opacity:0}}
+
+        @media(max-width:1024px){
+            .hero h1{font-size:36px}
+            .cuid-grid{gap:36px}
+        }
+        @media(max-width:768px){
+            .container{padding:0 16px}
+            .sintomas,.cuidadora,.central,.metodo,.comp,.deps,.faq,.ctaf{padding:60px 0}
+            .citybar{font-size:11px;padding:9px 14px}
+            .hdr{padding:11px 0}.logo{font-size:17px}
+            .hdr-btn{padding:8px 16px;font-size:11px}
+            .hero{padding:36px 0 50px}
+            .hero h1{font-size:26px}
+            .hero-sub{font-size:15px;margin-bottom:24px}
+            .badges{gap:8px;margin-bottom:28px}
+            .badge{font-size:11px;padding:6px 14px}
+            .cta-row{flex-direction:column;align-items:stretch}
+            .btn-w{width:100%;justify-content:center;padding:15px 24px;font-size:14px}
+            .btn-g{justify-content:center}
+            .cuid-grid{grid-template-columns:1fr;gap:28px}
+            .cuid-text h2{font-size:24px}
+            .cuid-text p{font-size:15px}
+            .cuid-nums{gap:10px}
+            .cuid-stat{padding:20px 16px}
+            .cuid-stat:hover{transform:none}
+            .sec-head h2{font-size:24px}
+            .sec-head h2 br{display:none}
+            .checks{grid-template-columns:1fr;gap:9px}
+            .chk{padding:15px 14px;gap:11px}
+            .chk:hover{transform:none}
+            .chk-txt{font-size:14px}
+            .chk-txt span{display:block;margin-top:1px;font-size:12px}
+            .callout{padding:24px 18px;border-radius:11px}
+            .callout p{font-size:14px}
+            .central-inner h2{font-size:22px}
+            .central-inner>p{font-size:15px}
+            .cycle{grid-template-columns:1fr}
+            .cyc:hover{transform:none}
+            .emph{font-size:16px;padding:24px 20px}
+            .tl::before{left:18px}
+            .tl-dot{width:40px;height:40px;font-size:15px;box-shadow:0 0 0 4px var(--white),0 3px 12px rgba(0,161,154,.15)}
+            .tl-item{gap:14px;margin-bottom:22px}
+            .tl-item:hover .tl-dot{transform:none}
+            .tl-body{padding:20px 16px;border-radius:11px}
+            .tl-body h3{font-size:16px}
+            .tl-body p{font-size:13px}
+            .met-result{padding:26px 18px;border-radius:11px}
+            .met-result p{font-size:15px;margin-bottom:18px}
+            .comp-cards{grid-template-columns:1fr;gap:14px}
+            .cc.new{order:-1}
+            .cc{padding:26px 20px;border-radius:11px}
+            .deps-grid{grid-template-columns:1fr;gap:14px}
+            .dep{padding:26px 20px 20px;border-radius:11px}
+            .dep:hover{transform:none}
+            .faq-q{font-size:14px;padding:18px 0}
+            .faq-tog{width:26px;height:26px}
+            .faq-a p{font-size:13px}
+            .ctaf h2{font-size:24px}
+            .ctaf h2 br{display:none}
+            .ctaf p{font-size:14px;margin-bottom:28px}
+            .ctaf-btn{width:100%;justify-content:center;font-size:15px;padding:16px 28px}
+            .ftr{padding:30px 0 20px}
+            .ftr-links{gap:14px}
+            .wpp{bottom:18px;right:14px}
+            .wpp-circle{width:54px;height:54px}
+            .wpp-circle svg{width:25px;height:25px}
+        }
+        @media(max-width:400px){
+            .hero h1{font-size:23px}
+            .sec-head h2{font-size:21px}
+            .central-inner h2{font-size:20px}
+            .ctaf h2{font-size:21px}
+            .btn-w,.ctaf-btn{font-size:13px;padding:14px 18px}
+            .cuid-text h2{font-size:21px}
+        }
+    </style>
+</head>
+<body>
+
+<div class="citybar">Doutor DM2 <b id="cityName">Vila Velha</b></div>
+
+<header class="hdr" id="hdr">
+    <div class="container">
+        <a href="#" class="logo">Doutor DM2</a>
+        <a href="#ctaf" class="hdr-btn">Quero conhecer o metodo</a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <h1 class="rv">Voce cuida de todo mundo. Mas quem cuida de voce?</h1>
+            <p class="hero-sub rv d1">Cansaco que nao passa, tonteiras, formigamentos, peso que nao sai. Voce nao precisa aceitar isso como normal. O Metodo DM2 e um protocolo de 12 semanas focado na <strong>remissao</strong> da diabetes tipo 2. Nao so no controle.</p>
+            <div class="badges rv d2">
+                <span class="badge"><strong>12</strong> semanas de protocolo</span>
+                <span class="badge"><strong>50+</strong> unidades no Brasil</span>
+                <span class="badge"><strong>17</strong> estados com presenca</span>
+            </div>
+            <div class="cta-row rv d3">
+                <a href="#ctaf" class="btn-w"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg> Quero conhecer o metodo</a>
+                <a href="#sintomas" class="btn-g">Sera que e pra mim? <span>&#8595;</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CUIDADORA -->
+<section class="cuidadora">
+    <div class="container">
+        <div class="cuid-grid">
+            <div class="cuid-text">
+                <h2 class="rv">Voce marca consulta pra mae, pro marido, pros filhos. E pra voce?</h2>
+                <p class="rv d1">Nos nossos dados, <strong>7 em cada 10</strong> pessoas que procuram o Metodo DM2 sao mulheres. E muitas nao buscam pra si. Buscam pra mae, pro esposo, pra irma.</p>
+                <p class="rv d2">Enquanto isso, os seus proprios sintomas ficam pra depois. O cansaco vira rotina. As tonteiras viram "estresse". O peso que nao baixa vira "falta de disciplina".</p>
+                <p class="rv d3"><strong>Nao e nada disso. E a diabetes agindo no seu metabolismo.</strong> E existe um metodo pra reverter isso.</p>
+            </div>
+            <div class="cuid-nums">
+                <div class="cuid-stat rv d1"><div class="num">70%</div><div class="lbl">dos leads sao mulheres</div></div>
+                <div class="cuid-stat rv d2"><div class="num">72</div><div class="lbl">buscaram consulta pra familia</div></div>
+                <div class="cuid-stat rv d3"><div class="num">51</div><div class="lbl">pre-diabeticas identificadas</div></div>
+                <div class="cuid-stat rv d4"><div class="num">8</div><div class="lbl">com diabetes gestacional</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SINTOMAS -->
+<section class="sintomas" id="sintomas">
+    <div class="container">
+        <div class="sec-head rv">
+            <h2>Marque o que voce sente.<br>Se forem 3 ou mais, o Metodo DM2 e pra voce.</h2>
+        </div>
+        <div class="checks">
+            <div class="chk rv d1"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Cansaco que nao passa <span>acorda ja exausta, mesmo dormindo</span></div></div>
+            <div class="chk rv d2"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Tonteiras e enjoos <span>sem explicacao</span></div></div>
+            <div class="chk rv d3"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Formigamento ou dormencia <span>nas maos e nos pes</span></div></div>
+            <div class="chk rv d4"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Dificuldade pra perder peso <span>mesmo controlando a alimentacao</span></div></div>
+            <div class="chk rv d5"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Vista embacada <span>que vai e volta</span></div></div>
+            <div class="chk rv d6"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Dores nas pernas <span>e inchaco nos pes</span></div></div>
+            <div class="chk rv d7"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Ansiedade, sono ruim <span>e emocional descontrolado</span></div></div>
+            <div class="chk rv d8"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Secura vaginal <span>ou dor durante a relacao sexual</span></div></div>
+            <div class="chk rv d9"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Memoria fraca <span>e fraqueza constante</span></div></div>
+            <div class="chk rv d10"><div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="chk-txt">Toma Glifage, Metformina ou Insulina <span>ha anos e nada muda</span></div></div>
+        </div>
+        <div class="callout" id="callout">
+            <div class="cnt-badge" id="cntBadge">0 sintomas marcados</div>
+            <p>Esses sintomas nao sao "estresse" e nao sao "da idade". Sao sinais de que a diabetes esta afetando seu corpo inteiro e que so remedio nao resolve.</p>
+            <p><strong>Chegou a hora de cuidar de voce.</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- CENTRAL -->
+<section class="central">
+    <div class="container">
+        <div class="central-inner">
+            <h2 class="rv">Por que remedio sozinho nao resolve e por que voce nao esta "exagerando"</h2>
+            <p class="rv d1">Diabetes tipo 2 nao e so glicose alta. Afeta circulacao, figado, nervos, hormonios e, sim, a sua vida sexual. Um efeito que quase nunca aparece na consulta.</p>
+            <p class="rv d2">Estudos com mulheres diabeticas mostram que <strong>64% relatam reducao na resposta sexual, 70% perda de lubrificacao e 47% queda no desejo</strong>. <span class="source">BVS Saude</span> Esses numeros raramente chegam a conversa com o medico. Especialistas reconhecem que a disfuncao sexual feminina no diabetes passa "sob o radar". <span class="source">ANAD</span></p>
+            <p class="rv d3">Dados do Ministerio da Saude de 2023 mostram que a prevalencia de diabetes tipo 2 e <strong>maior entre mulheres do que entre homens: 11,1% contra 9,1%</strong>. <span class="source">Agencia SP</span> E na menopausa, a queda do estrogênio acelera a resistencia a insulina, fazendo com que o metabolismo descompense mais rapido. <span class="source">Secretaria da Saude</span></p>
+            <p class="rv d4">Mas a maioria das consultas foca num numero. Prescreve um remedio. Aumenta a dose. Adiciona outro. Os sintomas continuam. A proxima consulta e daqui a seis meses.</p>
+            <div class="cycle">
+                <div class="cyc rv d1"><h4>"Aumenta a dose"</h4><p>Mais remedio, mesmos sintomas</p></div>
+                <div class="cyc rv d2"><h4>"Voce precisa emagrecer"</h4><p>Mas seu metabolismo esta travado pela propria diabetes. Primeiro precisa resolver a causa.</p></div>
+                <div class="cyc rv d3"><h4>"E emocional"</h4><p>A ansiedade, o sono ruim e o emocional descontrolado podem ter raiz metabolica. Inflamacao cronica afeta o cerebro. Nao e frescura.</p></div>
+                <div class="cyc rv d4"><h4>"Esta controlado"</h4><p>Voce ouve isso a cada 6 meses. Enquanto isso os sintomas continuam.</p></div>
+            </div>
+            <div class="emph rv">Voce nao esta exagerando. Seu corpo esta pedindo ajuda.</div>
+        </div>
+    </div>
+</section>
+
+<!-- METODO -->
+<section class="metodo" id="metodo">
+    <div class="container">
+        <div class="sec-head rv">
+            <h2>12 semanas pra recuperar a energia<br>que a diabetes tirou de voce.</h2>
+        </div>
+        <div class="tl">
+            <div class="tl-item rv d1"><div class="tl-dot">1</div><div class="tl-body"><h3>Avaliacao do seu perfil metabolico</h3><p>Na primeira conversa, analisamos seu historico: exames que voce ja tem, sintomas, tempo de diagnostico e medicamentos em uso. Com isso, identificamos se o seu perfil e compativel com o Metodo e como ele pode ser aplicado pra voce.</p></div></div>
+            <div class="tl-item rv d2"><div class="tl-dot">2</div><div class="tl-body"><h3>Protocolo semanal na clinica</h3><p>A cada semana, procedimentos de desinflamacao, desintoxicacao, oxigenacao e circulacao sanguinea. Muitas pacientes relatam melhora no cansaco e nas dores ja nas primeiras sessoes.</p></div></div>
+            <div class="tl-item rv d3"><div class="tl-dot">3</div><div class="tl-body"><h3>Suplementacao exclusiva</h3><p>Kit com Metforcaps e suplementos desenvolvidos para o Metodo DM2. Nao existe em farmacia. Formulacao propria, pensada pra recuperacao metabolica.</p></div></div>
+            <div class="tl-item rv d4"><div class="tl-dot">4</div><div class="tl-body"><h3>Resultados que voce ve nos exames</h3><p>Hemoglobina glicada, triglicerideos, colesterol: medidos no inicio, no meio e no final. Voce acompanha sua evolucao com numeros reais.</p></div></div>
+        </div>
+        <div class="met-result rv">
+            <p>Em 12 semanas, nossas pacientes relatam <strong>mais energia, menos dores, sono melhor, reducao de medicamentos e perda de peso</strong>. Com a prova nos exames.</p>
+            <a href="#ctaf" class="btn-w"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg> Quero comecar meu protocolo</a>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="comp">
+    <div class="container">
+        <div class="sec-head rv"><h2>A diferenca entre "conviver" com diabetes e buscar a remissao</h2></div>
+        <div class="comp-cards">
+            <div class="cc old rv">
+                <div class="cc-title">O que voce vive hoje</div>
+                <div class="cr"><div class="lbl">Objetivo</div><div class="val">Controlar a glicose</div></div>
+                <div class="cr"><div class="lbl">Acompanhamento</div><div class="val">Consulta a cada 3 a 6 meses</div></div>
+                <div class="cr"><div class="lbl">Visao</div><div class="val">So glicemia e hemoglobina glicada</div></div>
+                <div class="cr"><div class="lbl">Sobre seus sintomas</div><div class="val">"E estresse", "E da idade"</div></div>
+                <div class="cr"><div class="lbl">Sobre seu peso</div><div class="val">"Voce precisa emagrecer"</div></div>
+                <div class="cr"><div class="lbl">Duracao</div><div class="val">Pro resto da vida</div></div>
+            </div>
+            <div class="cc new rv">
+                <div class="cc-title">Metodo DM2</div>
+                <div class="cr"><div class="lbl">Objetivo</div><div class="val">Buscar a remissao da diabetes</div></div>
+                <div class="cr"><div class="lbl">Acompanhamento</div><div class="val">Semanal por 12 semanas</div></div>
+                <div class="cr"><div class="lbl">Visao</div><div class="val">Metabolismo completo: figado, inflamacao, circulacao</div></div>
+                <div class="cr"><div class="lbl">Sobre seus sintomas</div><div class="val">Sao sinais metabolicos que podem ser revertidos</div></div>
+                <div class="cr"><div class="lbl">Sobre seu peso</div><div class="val">Primeiro resolvemos a causa, o peso responde</div></div>
+                <div class="cr"><div class="lbl">Duracao</div><div class="val">12 semanas com resultado mensuravel</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="deps">
+    <div class="container">
+        <div class="sec-head rv"><h2>Mulheres que decidiram cuidar de si mesmas</h2></div>
+        <div class="deps-grid">
+            <div class="dep rv d1">
+                <div class="dep-q">&ldquo;</div>
+                <blockquote>"Estava pedindo socorro, depois de passar por varios medicos. Apos 15 dias, ja me sinto otima. Minhas dores nas pernas e formigamento sumiram. Estou com animo para sair de casa."</blockquote>
+                <div class="dep-line"></div>
+                <div class="dep-who"><div class="dep-av">DE</div><div><div class="dep-name">Dona Efigenia</div><div class="dep-city">Paciente DM2</div></div></div>
+            </div>
+            <div class="dep rv d2">
+                <div class="dep-q">&ldquo;</div>
+                <blockquote>"Eu acordava cansada todo dia, achava que era normal. Na terceira semana do metodo, meu marido perguntou o que tinha mudado. Voltei a ter disposicao pra viver."</blockquote>
+                <div class="dep-line"></div>
+                <div class="dep-who"><div class="dep-av">SH</div><div><div class="dep-name">Shirley</div><div class="dep-city">Paciente DM2 &bull; Vila Velha</div></div></div>
+            </div>
+            <div class="dep rv d3">
+                <div class="dep-q">&ldquo;</div>
+                <blockquote>"Vim buscar pra minha mae, mas quando vi os resultados dela, decidi fazer tambem. Minhas tonteiras sumiram e finalmente estou conseguindo perder peso."</blockquote>
+                <div class="dep-line"></div>
+                <div class="dep-who"><div class="dep-av">LC</div><div><div class="dep-name">Luciana</div><div class="dep-city">Paciente DM2 &bull; Cariacica</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="sec-head rv"><h2>Duvidas frequentes</h2></div>
+        <div class="faq-list">
+            <div class="faq-i rv d1"><button class="faq-q">Ja tenho plano de saude. Por que eu pagaria por isso?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Plano cobre consultas e exames. O Metodo DM2 e um protocolo de 12 semanas com procedimentos clinicos, suplementacao exclusiva e acompanhamento semanal. Isso nenhum plano oferece.</p></div></div></div>
+            <div class="faq-i rv d2"><button class="faq-q">Quanto custa o metodo?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Depende do seu historico e da unidade mais proxima. Na primeira conversa, nossa equipe explica tudo, sem surpresas. O que nossas pacientes dizem: o custo do metodo e menor do que o custo de viver com a diabetes avancando.</p></div></div></div>
+            <div class="faq-i rv d3"><button class="faq-q">Preciso parar meus medicamentos atuais?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Nao. O Metodo trabalha junto com seu acompanhamento medico atual. Qualquer reducao de medicamentos acontece com base nos seus exames e sempre com orientacao profissional.</p></div></div></div>
+            <div class="faq-i rv d4"><button class="faq-q">Tive diabetes gestacional. O metodo e pra mim?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Sim. Mulheres que tiveram diabetes gestacional tem risco muito maior de desenvolver diabetes tipo 2. O Metodo DM2 pode ajudar a reverter esse quadro antes que se instale de vez.</p></div></div></div>
+            <div class="faq-i rv d5"><button class="faq-q">Tenho hipotireoidismo e fibromialgia. Posso fazer?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>O Metodo olha pro seu metabolismo inteiro. Muitas dessas condicoes compartilham a mesma raiz inflamatoria da diabetes. Na primeira conversa, analisamos seu historico e avaliamos como o protocolo pode ser adaptado pra voce.</p></div></div></div>
+            <div class="faq-i rv d6"><button class="faq-q">Posso fazer pra mim e pra minha mae/esposo?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Claro. Muitas familias fazem o metodo juntas. Cada pessoa recebe um protocolo adaptado ao seu perfil. Fale com a gente no WhatsApp e a equipe orienta como funciona pra mais de uma pessoa.</p></div></div></div>
+            <div class="faq-i rv d7"><button class="faq-q">Tem unidade na minha cidade?<span class="faq-tog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><p>Mais de 50 unidades em 17 estados. Fale com a gente no WhatsApp e a gente localiza a mais perto de voce.</p></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="ctaf" id="ctaf">
+    <div class="container">
+        <h2 class="rv">Voce ja cuidou de todo mundo. Agora e a sua vez.</h2>
+        <p class="rv d1">O cansaco, as dores, o peso, o emocional. Nao e frescura e nao e "da idade". E diabetes agindo no seu corpo. Em 12 semanas, voce pode ver nos seus proprios exames que a <strong>remissao e possivel</strong>.</p>
+        <a href="https://wa.me/5527996506219?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20M%C3%A9todo%20DM2" class="ctaf-btn rv d2" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg> Quero falar com uma especialista DM2</a>
+        <div class="ctaf-micro rv d3">Nossa equipe responde rapido.</div>
+    </div>
+</section>
+
+<footer class="ftr">
+    <div class="container">
+        <div class="ftr-brand">Doutor DM2</div>
+        <div class="ftr-tag">Protocolo focado na remissao da diabetes tipo 2.</div>
+        <div class="ftr-links">
+            <a href="https://doutordm2.com.br/unidades/">Unidades</a>
+            <a href="https://doutordm2.com.br/sobre/">Sobre</a>
+            <a href="https://doutordm2.com.br/blog/">Blog</a>
+            <a href="https://doutordm2.com.br/contato/">Contato</a>
+            <a href="https://doutordm2.com.br/politica-de-privacidade/">Privacidade</a>
+        </div>
+        <div class="ftr-copy">&copy; 2026 Doutor DM2 Diabetes. Todos os direitos reservados.</div>
+    </div>
+</footer>
+
+<a href="https://wa.me/5527996506219?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20M%C3%A9todo%20DM2" class="wpp" target="_blank">
+    <div class="wpp-circle"><span class="wpp-ring"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg></div>
+</a>
+
+<script>
+(function(){
+    var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
+
+    window.addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('fix',scrollY>40)});
+
+    var callout=document.getElementById('callout');
+    var calloutHTML='<div class="cnt-badge" id="cntBadge">0 sintomas marcados</div><p>Esses sintomas nao sao "estresse" e nao sao "da idade". Sao sinais de que a diabetes esta afetando seu corpo inteiro e que so remedio nao resolve.</p><p><strong>Chegou a hora de cuidar de voce.</strong></p>';
+    var wppIcon='<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg>';
+
+    function updateCallout(){
+        var n=document.querySelectorAll('.chk.on').length;
+        if(n>=3){
+            callout.style.background='linear-gradient(135deg,#00A19A 0%,#1D71B8 100%)';
+            callout.innerHTML='<div class="cnt-badge">'+n+' sintomas marcados</div><p style="font-size:18px;font-weight:700;margin-bottom:18px">Voce marcou '+n+' sintomas. O Metodo DM2 foi desenvolvido pra voce.</p><a href="#ctaf" class="btn-w" style="text-decoration:none;display:inline-flex;align-items:center;gap:10px">'+wppIcon+' Quero falar com uma especialista</a>';
+        } else {
+            callout.style.background='';
+            callout.innerHTML=calloutHTML;
+            var badge=document.getElementById('cntBadge');
+            if(n>0){badge.textContent=n+(n===1?' sintoma marcado':' sintomas marcados');}
+            else{badge.textContent='0 sintomas marcados';}
+        }
+    }
+
+    document.querySelectorAll('.chk').forEach(function(c){
+        c.addEventListener('click',function(){c.classList.toggle('on');updateCallout();});
+    });
+
+    document.querySelectorAll('.faq-q').forEach(function(b){
+        b.addEventListener('click',function(){
+            var i=b.parentElement,a=i.classList.contains('on');
+            document.querySelectorAll('.faq-i').forEach(function(x){x.classList.remove('on')});
+            if(!a)i.classList.add('on');
+        });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click',function(e){
+            e.preventDefault();
+            var t=document.querySelector(this.getAttribute('href'));
+            if(t){window.scrollTo({top:t.getBoundingClientRect().top+pageYOffset-document.querySelector('.hdr').offsetHeight-16,behavior:'smooth'})}
+        });
+    });
+
+    var c=new URLSearchParams(location.search).get('cidade');
+    if(c)document.getElementById('cityName').textContent=decodeURIComponent(c);
+})();
+</script>
+
+</body>
+</html>
