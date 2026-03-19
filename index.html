@@ -8,6 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1464932024095629');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1464932024095629&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel -->
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
@@ -535,8 +547,26 @@
         });
     });
 
-    var c=new URLSearchParams(location.search).get('cidade');
+    var p=new URLSearchParams(location.search);
+    var c=p.get('cidade');
     if(c)document.getElementById('cityName').textContent=decodeURIComponent(c);
+
+    // UTM Tracking
+    var uk=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'],ut={};
+    uk.forEach(function(k){var v=p.get(k);if(v)ut[k]=v});
+    if(Object.keys(ut).length>0)localStorage.setItem('dm2_utms',JSON.stringify(ut));
+    var su=Object.keys(ut).length>0?ut:JSON.parse(localStorage.getItem('dm2_utms')||'{}');
+    if(Object.keys(su).length>0){
+        var tg=[su.utm_campaign,su.utm_content,su.utm_term].filter(Boolean).join('|');
+        var te=encodeURIComponent(' ['+tg+']');
+        document.querySelectorAll('a[href*="wa.me"]').forEach(function(l){
+            l.href=l.href.replace(/text=([^&]*)/,function(m,msg){return 'text='+msg+te});
+        });
+    }
+    // Evento Lead no pixel ao clicar WhatsApp
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(l){
+        l.addEventListener('click',function(){if(typeof fbq==='function')fbq('track','Lead')});
+    });
 })();
 </script>
 
